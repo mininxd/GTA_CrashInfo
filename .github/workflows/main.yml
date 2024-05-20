@@ -50,7 +50,9 @@ jobs:
     - name: check dir
       run: |
         ls -a
-        zip -r CrashInfo.zip ./libs
+        mv libs crashInfo
+        ls -a
+        zip -r CrashInfo.zip ./crashInfo
         ls -a
         
         
