@@ -44,7 +44,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
           tag_name: ${{ github.run_number }}${{ github.workflow_sha }}
-          release_name: ${{ github.workflow_sha }}
+          release_name: GTA-crash-info
 
 
     - name: check dir
