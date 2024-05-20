@@ -8,7 +8,7 @@ jobs:
     steps:
 
     - name: Checkout repository...
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         submodules: recursive
 
@@ -49,20 +49,26 @@ jobs:
 
     - name: check dir
       run: |
-        ls -a
-        mv libs crashInfo
-        ls -a
-        zip -r CrashInfo.zip ./crashInfo
-        ls -a
+        tree ./
         
-        
-    - name: Upload Release Asset
-      id: upload-release-asset 
+    - name: Upload Armv7
+      id: upload-ArmV7
       uses: actions/upload-release-asset@v1
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./CrashInfo.zip
-          asset_name: CrashInfo.zip
-          asset_content_type: application/zip
+          asset_path: ./crashInfo/arm64-v7a/libCrashInfo.so
+          asset_name: libCrashInfo.so
+          asset_content_type: application/octet-stream
+          
+    - name: Upload Armv8
+      id: upload-Armv8
+      uses: actions/upload-release-asset@v1
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./crashInfo/arm64-v8a/libCrashInfo64.so
+          asset_name: libCrashInfo64.so
+          asset_content_type: application/octet-stream
