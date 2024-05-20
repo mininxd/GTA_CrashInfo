@@ -50,16 +50,16 @@ jobs:
     - name: check dir
       run: |
         ls -a
-        tree ./
         zip -r CrashInfo.zip ./libs
+        ls -a
         
         
-        - name: Upload Release Asset
-        id: upload-release-asset 
-        uses: actions/upload-release-asset@v1
-        env:
+    - name: Upload Release Asset
+      id: upload-release-asset 
+      uses: actions/upload-release-asset@v1
+      env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
+      with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./CrashInfo_${{ github.run_number }}.zip
           asset_name: CrashInfo_${{ github.run_number }}.zip
