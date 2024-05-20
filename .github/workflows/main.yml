@@ -49,7 +49,8 @@ jobs:
 
     - name: check dir
       run: |
-        tree ./
+        ls -a
+        ls ./libs -a
         
     - name: Upload Armv7
       id: upload-ArmV7
@@ -58,7 +59,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./libs/arm64-v7a/libCrashInfo.so
+          asset_path: ./libs/armeabi-v7a/libCrashInfo.so
           asset_name: libCrashInfo.so
           asset_content_type: application/octet-stream
           
